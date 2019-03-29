@@ -1,0 +1,27 @@
+﻿@using MyBasket.Models
+
+@model IEnumerable<LineItem>
+
+@{
+    Layout = "~/Views/Shared/PageLayout.cshtml";
+}
+
+<h3>Your Cart Contains....</h3>
+
+<div class="container">
+    <div class="row">
+        @foreach (LineItem Item in Model)
+        {
+            <div class="col-md-3">
+                <img src="~/Assets/ProductImages/@Item.Product.Picture" class="card-img-top" alt="Card image cap" /><br />
+                @Item.Product.Name<br />
+                UnitPrice @Item.UnitPrice<br />
+                Quantity :@Item.Quantity<br/>
+                Total Price :@(Item.UnitPrice * Item.Quantity * (100 - Item.Discount) / 100)
+                
+                @Html.ActionLink("Remove", "RemoveItemFromCart", new { id = Item.Product.ID })
+            </div>
+        }
+    </div>
+    @Html.ActionLink("Empty Cart", "EmptyCart")
+</div>

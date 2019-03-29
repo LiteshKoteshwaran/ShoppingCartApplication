@@ -1,0 +1,11 @@
+﻿@using MyBasket.Models
+@model List<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/PageLayout.cshtml";
+}
+
+@Html.Partial("PartialViewForProductList",Model)
+
+
+

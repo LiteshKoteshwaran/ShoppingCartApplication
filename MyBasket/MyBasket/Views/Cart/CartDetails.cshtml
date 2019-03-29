@@ -1,0 +1,14 @@
+﻿@using MyBasket.Models
+
+@model Dictionary<int, LineItem>
+
+@{
+    if (Model == null || Model.Count == 0)
+    {
+        <h4><b>Your Cart is Empty!!!!!</b></h4>
+    }
+    else
+    {
+        @Html.ActionLink(Model.Count+"Item in your cart","ViewCart",null,new {@class="btn btn-primary btn-block"})
+    }
+}

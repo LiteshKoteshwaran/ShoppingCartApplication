@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +50,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -89,19 +92,177 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ProductImages\10000013_18-fresho-avocado.jpg" />
+    <Content Include="Assets\ProductImages\10000016_14-fresho-baby-corn-peeled-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000027_19-fresho-banana-robusta.jpg" />
+    <Content Include="Assets\ProductImages\10000033_19-fresho-banana-yelakki.jpg" />
+    <Content Include="Assets\ProductImages\10000043_31-fresho-beans-french-ring.jpg" />
+    <Content Include="Assets\ProductImages\10000047_18-fresho-beetroot-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000050_16-fresho-bitter-gourd.jpg" />
+    <Content Include="Assets\ProductImages\10000054_14-fresho-brinjal-bottle-shape.jpg" />
+    <Content Include="Assets\ProductImages\10000066_21-fresho-cabbage-small-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000068_17-fresho-capsicum-hybrid-green.jpg" />
+    <Content Include="Assets\ProductImages\10000071_13-fresho-carrot-local.jpg" />
+    <Content Include="Assets\ProductImages\10000074_14-fresho-cauliflower-medium.jpg" />
+    <Content Include="Assets\ProductImages\10000081_15-fresho-chilli-green-big-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000088_13-fresho-chow-chow-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000093_15-fresho-coconut-medium.jpg" />
+    <Content Include="Assets\ProductImages\10000095_15-fresho-colocasia-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000101_6-fresho-cucumber-color-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000103_14-fresho-cucumber.jpg" />
+    <Content Include="Assets\ProductImages\10000104_15-fresho-curry-leaves-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000114_14-fresho-fresh-garlic.jpg" />
+    <Content Include="Assets\ProductImages\10000117_14-fresho-fresh-ginger-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000126_13-fresho-lemon.jpg" />
+    <Content Include="Assets\ProductImages\10000143_13-fresho-ladies-finger.jpg" />
+    <Content Include="Assets\ProductImages\10000148_13-fresho-onion-medium.jpg" />
+    <Content Include="Assets\ProductImages\10000156_13-fresho-pineapple-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000159_14-fresho-potato.jpg" />
+    <Content Include="Assets\ProductImages\10000163_14-fresho-pumpkin-green-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000169_12-fresho-raw-banana-green.jpg" />
+    <Content Include="Assets\ProductImages\10000171_11-fresho-cabbage-red.jpg" />
+    <Content Include="Assets\ProductImages\10000173_9-fresho-capsicum-aaa-red.jpg" />
+    <Content Include="Assets\ProductImages\10000176_13-fresho-ridge-gourd.jpg" />
+    <Content Include="Assets\ProductImages\10000178_10-fresho-sambhar-onion-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000181_10-fresho-sapota-round-large-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\10000192_13-fresho-mosambi.jpg" />
+    <Content Include="Assets\ProductImages\10000195_12-fresho-sweet-potato.jpg" />
+    <Content Include="Assets\ProductImages\10000201_12-fresho-tomato-hybrid.jpg" />
+    <Content Include="Assets\ProductImages\10000207_13-fresho-water-melon-kiran.jpg" />
+    <Content Include="Assets\ProductImages\10000209_11-fresho-capsicum-yellow.jpg" />
+    <Content Include="Assets\ProductImages\10000267-2_8-fresho-orange-nagpur.jpg" />
+    <Content Include="Assets\ProductImages\10000269_12-fresho-pomegranate-kesar.jpg" />
+    <Content Include="Assets\ProductImages\10000270_12-fresho-carrot-english.jpg" />
+    <Content Include="Assets\ProductImages\10000273_11-fresho-mushrooms-button.jpg" />
+    <Content Include="Assets\ProductImages\10000277_13-fresho-knol-khol.jpg" />
+    <Content Include="Assets\ProductImages\10000345_15-fresho-banana-nendran.jpg" />
+    <Content Include="Assets\ProductImages\10000349_13-fresho-custard-apple.jpg" />
+    <Content Include="Assets\ProductImages\10000355_10-fresho-sprouts-mixed-gram.jpg" />
+    <Content Include="Assets\ProductImages\10000370_11-fresho-guava.jpg" />
+    <Content Include="Assets\ProductImages\10000377_13-fresho-spring-onion.jpg" />
+    <Content Include="Assets\ProductImages\10000388_9-fresho-methi.jpg" />
+    <Content Include="Assets\ProductImages\10000577_10-fresho-plums-imported.jpg" />
+    <Content Include="Assets\ProductImages\10000594_2-fresho-grapes-red-globe.jpg" />
+    <Content Include="Assets\ProductImages\10000693_9-fresho-sweet-corn-pellets.jpg" />
+    <Content Include="Assets\ProductImages\10250152_13-fresho-ya-pear-shandong.jpg" />
+    <Content Include="Assets\ProductImages\20001477_15-fresho-apple-shimla.jpg" />
+    <Content Include="Assets\ProductImages\20003956_1-fresho-baby-orange.jpg" />
+    <Content Include="Assets\ProductImages\20004773_2-fresho-snake-gourd-diced.jpg" />
+    <Content Include="Assets\ProductImages\40004384_10-fresho-mango-raw.jpg" />
+    <Content Include="Assets\ProductImages\40004385_10-fresho-elephant-foot-yam.jpg" />
+    <Content Include="Assets\ProductImages\40004992_13-fresho-sweet-corn-grade-a.jpg" />
+    <Content Include="Assets\ProductImages\40005782_4-fresho-carrot-sliced.jpg" />
+    <Content Include="Assets\ProductImages\40005791_8-fresho-cauliflower-florets.jpg" />
+    <Content Include="Assets\ProductImages\40005795_2-fresho-chow-chow-diced.jpg" />
+    <Content Include="Assets\ProductImages\40005802_7-fresho-green-chilly-chopped.jpg" />
+    <Content Include="Assets\ProductImages\40005823_6-fresho-pomegranate-peeled.jpg" />
+    <Content Include="Assets\ProductImages\40005839_4-fresho-pineapple-sliced.jpg" />
+    <Content Include="Assets\ProductImages\40005852_6-fresho-watermelon-diced.jpg" />
+    <Content Include="Assets\ProductImages\40005888_5-fresho-korma-pack-for-2.jpg" />
+    <Content Include="Assets\ProductImages\40010687_2-fresho-garlic-peeled.jpg" />
+    <Content Include="Assets\ProductImages\40019380_3-fresho-diced-papaya.jpg" />
+    <Content Include="Assets\ProductImages\40021630_1-fresho-karamani-white.jpg" />
+    <Content Include="Assets\ProductImages\40022638_3-fresho-tomato-local-organically-grown.jpg" />
+    <Content Include="Assets\ProductImages\40022646_3-fresho-sapota-organically-grown.jpg" />
+    <Content Include="Assets\ProductImages\40023465_4-supa-corn-kernels.jpg" />
+    <Content Include="Assets\ProductImages\40023476_3-fresho-potato-organically-grown.jpg" />
+    <Content Include="Assets\ProductImages\40023478_3-fresho-coconut-organically-grown.jpg" />
+    <Content Include="Assets\ProductImages\40023481_3-fresho-lemon-organically-grown.jpg" />
+    <Content Include="Assets\ProductImages\40024625_2-zespri-kiwi-green.jpg" />
+    <Content Include="Assets\ProductImages\40025341_2-zespri-kiwi-green.jpg" />
+    <Content Include="Assets\ProductImages\40025988_2-fresho-chutney-mix.jpg" />
+    <Content Include="Assets\ProductImages\40033815_2-fresho-apple-fuji.jpg" />
+    <Content Include="Assets\ProductImages\40033824-2_1-fresho-apple-washington.jpg" />
+    <Content Include="Assets\ProductImages\40048955_1-usa-pears-red.jpg" />
+    <Content Include="Assets\ProductImages\40050087_1-fresho-cut-pumkin-green.jpg" />
+    <Content Include="Assets\ProductImages\40050704_1-fresho-cut-ash-gourd.jpg" />
+    <Content Include="Assets\ProductImages\40051286_1-healthy-buddha-organic-banana-red.jpg" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Models\MyBasket.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>MyBasket.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.0.0.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Web.config" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\PageLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\PartialViewForProductList.cshtml" />
+    <Content Include="Views\Home\Categories.cshtml" />
+    <Content Include="Views\Home\Brands.cshtml" />
+    <Content Include="Views\Cart\CartDetails.cshtml" />
+    <Content Include="Views\Cart\ViewCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyBasket.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyBasket.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyBasketRepository.cs" />
+    <Compile Include="Models\MyCartRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.0.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,14 +272,25 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\MyBasket.dbml.layout">
+      <DependentUpon>MyBasket.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

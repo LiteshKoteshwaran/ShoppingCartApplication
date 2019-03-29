@@ -1,0 +1,19 @@
+﻿@using MyBasket.Models
+
+@model List<Product>
+
+<div class="container">
+    <div class="row">
+        @foreach (Product product in Model)
+        {
+            <div class="col-md-3">
+                <img src="~/Assets/ProductImages/@product.Picture" class="card-img-top" alt="Card image cap" /><br />
+                @product.Name<br />
+                @product.UnitPrice<br />
+                @Html.ActionLink("Add To Cart", "AddToCart", "Cart", new { id = product.ID }, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+</div>
+
+

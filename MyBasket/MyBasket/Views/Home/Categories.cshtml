@@ -1,0 +1,10 @@
+﻿@using MyBasket.Models
+
+@model List<Category>
+
+@foreach (Category category in Model)
+{
+    <ul class="list-group">
+        <li class="list-group-item">@Html.ActionLink(category.Name, "Category", new { id = category.ID })</li>
+    </ul>
+}
