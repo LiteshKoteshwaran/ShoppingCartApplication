@@ -26,7 +26,8 @@ namespace MyBasket.Controllers
         public ActionResult AddToCart(int id)
         {
             //Session["Cart"] = myBasketRepository.GetProductById(id);
-
+            int abc = 10;
+            char v = (char) abc;
             Dictionary<int, LineItem> cart = (Dictionary<int, LineItem>)HttpContext.Session["Cart"];
 
             if (cart == null)

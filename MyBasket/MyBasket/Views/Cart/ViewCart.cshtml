@@ -10,18 +10,22 @@
 
 <div class="container">
     <div class="row">
+        <div>
+            <h5 style="text-align: right">@Html.ActionLink("Empty Cart", "EmptyCart")</h5>
+        </div>
+    </div>
+    <div class="row">
         @foreach (LineItem Item in Model)
         {
             <div class="col-md-3">
-                <img src="~/Assets/ProductImages/@Item.Product.Picture" class="card-img-top" alt="Card image cap" /><br />
-                @Item.Product.Name<br />
-                UnitPrice @Item.UnitPrice<br />
+                <img src="~/Assets/ProductImages/@Item.Product.Picture" class="card-img-top" alt="Card image cap"/><br/>
+                @Item.Product.Name<br/>
+                UnitPrice @Item.UnitPrice<br/>
                 Quantity :@Item.Quantity<br/>
                 Total Price :@(Item.UnitPrice * Item.Quantity * (100 - Item.Discount) / 100)
-                
-                @Html.ActionLink("Remove", "RemoveItemFromCart", new { id = Item.Product.ID })
+
+                @Html.ActionLink("Remove", "RemoveItemFromCart", new {id = Item.Product.ID})
             </div>
         }
     </div>
-    @Html.ActionLink("Empty Cart", "EmptyCart")
 </div>
