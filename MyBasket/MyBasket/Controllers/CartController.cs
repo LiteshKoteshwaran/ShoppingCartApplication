@@ -23,11 +23,8 @@ namespace MyBasket.Controllers
             return View();
         }
 
-        public ActionResult AddToCart(int id)
+        public int AddToCart(int id)
         {
-            //Session["Cart"] = myBasketRepository.GetProductById(id);
-            int abc = 10;
-            char v = (char) abc;
             Dictionary<int, LineItem> cart = (Dictionary<int, LineItem>)HttpContext.Session["Cart"];
 
             if (cart == null)
@@ -52,8 +49,7 @@ namespace MyBasket.Controllers
                 Item.Quantity = 1;
                 cart[id] = Item;
             }
-
-            return RedirectToAction("Index");
+            return cart.Count;
         }
 
         public ActionResult CartDetails()
@@ -67,7 +63,6 @@ namespace MyBasket.Controllers
             Dictionary<int, LineItem> cart = (Dictionary<int, LineItem>)Session["Cart"];
             return View(cart.Values);
         }
-
         public ActionResult RemoveItemFromCart(int id)
         {
             Dictionary<int, LineItem> cart = (Dictionary<int, LineItem>)Session["Cart"];
@@ -79,7 +74,14 @@ namespace MyBasket.Controllers
         {
             Dictionary<int, LineItem> cart = (Dictionary<int, LineItem>)Session["Cart"];
             cart.Clear();
-            return RedirectToAction("ViewCart");
+            return Redirect(ControllerContext.HttpContext.Request.UrlReferrer.ToString());
+        }
+
+        [Authorize]
+        public ActionResult CheckOut()
+        {
+            IEnumerable<LineItem> item = TempData["cart"] as IEnumerable<LineItem>; 
+            return View(item);
         }
     }
 }

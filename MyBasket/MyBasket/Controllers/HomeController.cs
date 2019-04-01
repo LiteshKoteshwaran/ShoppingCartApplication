@@ -16,7 +16,12 @@ namespace MyBasket.Controllers
             return View(myBasketRepository.Products);
         }
 
-        public ActionResult Categories()
+        [HttpPost]
+        public ActionResult Index(int currentPageIndex)
+        {
+            return View(myBasketRepository.Products); 
+        }
+    public ActionResult Categories()
         {
             return View(myBasketRepository.Categories);
         }

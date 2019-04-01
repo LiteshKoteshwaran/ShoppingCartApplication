@@ -4,6 +4,9 @@
 
 @{
     Layout = "~/Views/Shared/PageLayout.cshtml";
+    var index = 0;
+    int TotalAmount = 0;
+    TempData["cart"] = Model;
 }
 
 <h3>Your Cart Contains....</h3>
@@ -11,21 +14,26 @@
 <div class="container">
     <div class="row">
         <div>
-            <h5 style="text-align: right">@Html.ActionLink("Empty Cart", "EmptyCart")</h5>
+            <h5 style="text-align: right" ;>@Html.ActionLink("Empty Cart", "EmptyCart")</h5>
         </div>
     </div>
     <div class="row">
         @foreach (LineItem Item in Model)
         {
-            <div class="col-md-3">
-                <img src="~/Assets/ProductImages/@Item.Product.Picture" class="card-img-top" alt="Card image cap"/><br/>
-                @Item.Product.Name<br/>
-                UnitPrice @Item.UnitPrice<br/>
-                Quantity :@Item.Quantity<br/>
-                Total Price :@(Item.UnitPrice * Item.Quantity * (100 - Item.Discount) / 100)
-
-                @Html.ActionLink("Remove", "RemoveItemFromCart", new {id = Item.Product.ID})
+            <div id="@(++index)" class="col-md-3">
+                <img src="~/Assets/ProductImages/@Item.Product.Picture" class="card-img-top" alt="Card image cap" /><br />
+                <b>@Item.Product.Name</b><br />
+                UnitPrice :@Item.UnitPrice<br />
+                Quantity :@Item.Quantity<br />
+                Total Price :@(Item.UnitPrice * Item.Quantity * (100 - Item.Discount) / 100)<br />
+                @(
+    TotalAmount += (int)(Item.UnitPrice * Item.Quantity * (100 - Item.Discount) / 100) )
+                <button class="btn btn-block btn-danger" onclick='RemoveItemsInCart(@Item.Product.ID,@index)'>Remove</button>
             </div>
         }
+    </div>
+    <div>
+        <label style="float: right; margin-right: auto;"><b>Total Amount : @TotalAmount</b></label>
+        @Html.ActionLink("CheckOut","CheckOut")
     </div>
 </div>

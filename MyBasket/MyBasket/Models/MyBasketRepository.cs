@@ -9,6 +9,13 @@ namespace MyBasket.Models
     {
         MyBasketDataContext myBasketDataContext = new MyBasketDataContext();
 
+
+        public List<Product> ProductList = new List<Product>();
+
+        public int CurrentPageIndex { get; set; }
+
+        public int PageCount { get; set; }
+
         public List<Product> Products
         {
             get { return myBasketDataContext.Products.ToList(); }

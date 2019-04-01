@@ -6,14 +6,13 @@
     <div class="row">
         @foreach (Product product in Model)
         {
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <img src="~/Assets/ProductImages/@product.Picture" class="card-img-top" alt="Card image cap" /><br />
                 @product.Name<br />
                 @product.UnitPrice<br />
-                @Html.ActionLink("Add To Cart", "AddToCart", "Cart", new { id = product.ID }, new { @class = "btn btn-primary" })
+                <a class="btn btn-primary" onclick="AddProductCart(@product.ID)">Add To Cart</a>
             </div>
         }
     </div>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/UserDefined/Site.js")"></script>
 </div>
-
-
