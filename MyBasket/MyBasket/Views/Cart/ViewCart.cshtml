@@ -32,8 +32,12 @@
             </div>
         }
     </div>
+        <label style="float: right; margin-right: auto;"><b>Total Amount : @TotalAmount</b></label><br/>
     <div>
-        <label style="float: right; margin-right: auto;"><b>Total Amount : @TotalAmount</b></label>
-        @Html.ActionLink("CheckOut","CheckOut")
+        @Html.ActionLink("CheckOut","CheckOut",null,new {@class = "btn btn-primary",@onclick="Checkout()", @style= "float: right; margin-right: auto;" })
     </div>
 </div>
+@{
+
+    TempData["TotalAmount"] = TotalAmount;
+}

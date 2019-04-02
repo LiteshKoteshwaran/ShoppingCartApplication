@@ -1,6 +1,7 @@
 ﻿using MyBasket.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,13 +10,14 @@ namespace MyBasket.Controllers
 {
     public class CartController : Controller
     {
+        private static int index = 0;
         MyBasketRepository myBasketRepository = new MyBasketRepository();
 
         MyCartRepository myCartRepository = new MyCartRepository();
         // GET: Cart
         public ActionResult Index()
         {
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult CartTemplate()
@@ -78,10 +80,41 @@ namespace MyBasket.Controllers
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult CheckOut()
         {
-            IEnumerable<LineItem> item = TempData["cart"] as IEnumerable<LineItem>; 
-            return View(item);
+            Dictionary<int, LineItem> cart = (Dictionary<int, LineItem>)HttpContext.Session["Cart"];
+
+            Customer customer = (Customer)Session["User"];
+            Order order = new Order();
+            order.CustomerID = customer.ID;
+            decimal? total = 0;
+            List<LineItem> itemList = new List<LineItem>();
+            foreach (var ele in cart.Values)
+            {
+                LineItem list = new LineItem();
+                list.ProductID = ele.ProductID;
+                list.Quantity = ele.Quantity;
+                list.UnitPrice = ele.UnitPrice;
+                list.Discount = ele.Discount;
+                total += (ele.Quantity * ele.UnitPrice * (100 - ele.Discount) / 100);
+                order.LineItems.Add(list);
+                itemList.Add(list);
+            }
+            order.OrderDate = DateTime.Now;
+            order.Status = "Pending";
+
+            TempData["order"] = order;
+            TempData["items"] = itemList;
+            TempData["total"] = total;
+            new MyCartRepository().PopulateOrderAndLineItem(order);
+
+            return RedirectToAction("PlacedOders");
+        }
+
+        public ActionResult PlacedOders()
+        {
+            return View();
         }
     }
 }

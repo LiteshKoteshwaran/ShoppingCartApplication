@@ -1,0 +1,45 @@
+﻿@using MyBasket.Models
+
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/PageLayout.cshtml";
+
+    TempData.Keep("order");
+    TempData.Keep("items");
+    TempData.Keep("total");
+
+    Order order = (Order)TempData["order"];
+    List<LineItem> itemList = (List<LineItem>)TempData["items"];
+    var total = TempData["total"];
+
+}
+<h3 class="alert alert-success">Your order has been Placed Successfully</h3>
+
+<div class="container">
+    <div class="form-group">
+        <label class="col-md-3">
+            <b>Order No :</b>
+            <label class="col-md-5">@order.ID</label>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3">
+            <b>Order Status :</b>
+            <label class="col-md-5">@order.Status</label>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3">
+            <b>Delivery Address :</b>
+            <label class="col-md-5">@order.Customer.Address</label>
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3">
+            <b>Total to be Paid :</b>
+            <label class="col-md-4">@total</label>
+        </label>
+    </div>
+</div>

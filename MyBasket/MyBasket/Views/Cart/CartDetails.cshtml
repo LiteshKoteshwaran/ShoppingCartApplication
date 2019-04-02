@@ -9,6 +9,6 @@
     }
     else
     {
-        @Html.ActionLink(Model.Count+" "+"Item in your cart","ViewCart",null,new {@class="btn btn-primary btn-block"})
+        @Html.ActionLink(Model.Count+" "+"Item in your cart","ViewCart",null,new {@class="btn btn-primary btn-block", @id= "ViewCart", @onclick = "GoToCart()" })
     }
 }

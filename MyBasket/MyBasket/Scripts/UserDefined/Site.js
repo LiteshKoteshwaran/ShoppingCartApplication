@@ -129,9 +129,10 @@ function AddProductCart(id) {
     $.ajax({
         url: "/Cart/AddToCart/" + id,
         success: function (resp) {
+            toastr.info('added successfully')
             var out = "";
             if (resp && resp > 0) {
-                out = '<a href="/Cart/ViewCart/" class="btn btn-primary btn-block">' + resp + ' items in your cart</a>'
+                out = '<a href="/Cart/ViewCart/" id="ViewCart" class="btn btn-primary btn-block" onclick="GoToCart()">' + resp + ' items in your cart</a>'
             } else {
                 out = '<h5 class="text-center"> your cart is empty!!</h5>'
             }
@@ -142,12 +143,27 @@ function AddProductCart(id) {
 
 
 function AfterLogin() {
+    debugger
     $.ajax({
-        method :"get",
-        url: "/Customer/Login/",
+        url: "/Customer/Login",
         success: function (resp) {
-            $("#Login").remove();
-            $("#Register").remove();
+            $("div#Login").remove();
+        }
+    });
+}
+
+
+function Checkout() {
+    swal("Thanks For your Order!", "Successfully Placed!", "success")
+}
+
+
+
+function GoToCart() {
+    $.ajax({
+        url: "/Cart/ViewCart",
+        success: function (resp) {
+            $("#ViewCart").remove();
         }
     });
 }
